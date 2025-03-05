@@ -11,16 +11,14 @@ session_start();
    // echo "You are not allowed to view this page, please login as admin";
     //exit;
 //}
-
-
 require 'database.php';
+
 require 'header.php';
 
 $sql = "SELECT * FROM cards";
 $stmt = $conn->prepare($sql);
-$stmt = $conn->prepare($query);
 $stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$card_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +40,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($cards as $card) : ?>
+            <?php foreach ($card as $card) : ?>
                 <tr>
                     <td><?php echo $card['name'] ?></td>
                     <td><?php echo $card['type'] ?></td>
