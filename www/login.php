@@ -11,10 +11,10 @@ if (isset($_POST['submit'])) {
 
             $sql = "SELECT * FROM customers WHERE email = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $emailForm);
+            $stmt->bindValue(1, $emailForm, PDO::PARAM_STR);
             $stmt->execute();
-            $result = $stmt->get_result();
-            $customer_id = $result->fetch_assoc();
+            $stmt->execute();
+            $customer_id = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($customer_id && password_verify($passwordForm, $customer_id['password'])) {
                 session_start();
@@ -28,16 +28,22 @@ if (isset($_POST['submit'])) {
                 exit;
             } else {
                 $_GET['message'] = 'wrongpassword';
+                $_POST['message'] = 'wrongpassword';
             }
         } else {
             $_GET['message'] = 'emptyfields';
+            $_POST['message'] = 'emptyfields';
         }
     } else {
         $_GET['message'] = 'usernotfound';
+        $_POST['message'] = 'usernotfound';
     }
 } else {
     $_GET['message'] = 'notsubmitted';
+    $_POST['message'] = 'notsubmitted';
 }
+header("Location: index.php");
+exit;
 
 require 'login_message.php';
 

@@ -7,6 +7,7 @@
                 <li><a href="rare.php" class="text-gray-300 hover:text-white">Zeldzame Pokémon</a></li>
                 <li><a href="about.php" class="text-gray-300 hover:text-white">Over Ons</a></li>
                 <li><a href="contact.php" class="text-gray-300 hover:text-white">Contact</a></li>
+                <li><a href="search.php" class="text-gray-300 hover:text-white">Search</a></li>
                 <li><a href="login.php" class="text-gray-300 hover:text-white">Login</a></li>
             </ul>
         </div>

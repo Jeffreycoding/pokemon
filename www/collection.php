@@ -40,7 +40,7 @@ $card_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($card as $card) : ?>
+            <?php foreach ($card_id as $card) : ?>
                 <tr>
                     <td><?php echo $card['name'] ?></td>
                     <td><?php echo $card['type'] ?></td>

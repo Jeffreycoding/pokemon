@@ -32,10 +32,6 @@ printf("Now: %s", Carbon::now());
                     <td><?php echo $card['rarity'] ?></td>
                     <td><?php echo $card['price'] ?></td>
                     <td><?php echo $card['image'] ?></td>
-
-                
-                         <a href="collection_edit.php?id=<?php echo $card['card_id'] ?>">Wijzig</a>
-                        <a href="collection_delete.php?id=<?php echo $card['card_id'] ?>">Verwijder</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
