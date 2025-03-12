@@ -26,6 +26,7 @@ $card_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Verzameling - Pokédex</title>    
     <script src="https://cdn.tailwindcss.com"></script>
+    <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/<?php echo str_pad($card['picture'], 3, '0', STR_PAD_LEFT); ?>.png" alt="<?php echo $card['name']?>" class="w-full h-64 object-cover">
 
 </head>
 <body>

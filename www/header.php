@@ -1,3 +1,4 @@
+<script src="https://cdn.tailwindcss.com"></script>
 <nav class="bg-gray-800 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="text-white text-2xl font-bold">Pokédex</div>
