@@ -21,8 +21,9 @@ if (isset($_POST['submit'])) {
                 $_SESSION['email']  = $customer['email'];
                 $_SESSION['adress']       = $customer['adress'];
                 $_SESSION['created_at']       = $customer['created_at'];
+                $_SESSION['role']       = $customer['role'] ?? 'customer';
 
-                header("Location: /pokemon/www/index.php");
+                header("Location: /pokemon/www/user_dash.php");
                 exit;
             } else {
                 $_SESSION['message'] = 'wrongpassword';

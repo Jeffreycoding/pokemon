@@ -41,7 +41,7 @@ use Carbon\Carbon;
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <?php foreach ($cards as $card) : ?>
                     <div class="bg-white rounded-lg shadow-lg p-4">
-                        <a href="card_detail.php?id=<?php echo $card['id']; ?>">
+                        <a href="card_detail.php?id=<?php echo $card['card_id']; ?>">
                             <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/<?php echo $card['image']; ?>.png" 
                                  alt="<?php echo $card['name']; ?>" 
                                  class="w-48 h-48 mx-auto object-contain">
