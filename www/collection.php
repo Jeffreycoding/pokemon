@@ -2,8 +2,17 @@
 session_start();
 require 'database.php';
 
+$type_filter = isset($_GET['type']) ? $_GET['type'] : '';
+
 $sql = "SELECT * FROM Cards";
-$stmt = $conn->query($sql);
+if ($type_filter) {
+    $sql .= " WHERE type = :type";
+}
+$stmt = $conn->prepare($sql);
+if ($type_filter) {
+    $stmt->bindParam(':type', $type_filter);
+}
+$stmt->execute();
 $card_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -25,7 +34,7 @@ $card_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
                          alt="<?php echo $card['name']; ?>" 
                          class="w-48 h-48 mx-auto object-contain">
                     <h2 class="text-xl font-bold mt-4 text-center"><?php echo $card['name']; ?></h2>
-                    <p class="text-gray-600 text-center mt-2">Type: <?php echo $card['type']; ?></p>
+                    <p class="text-gray-600 text-center mt-2">Type: <a href="?type=<?php echo $card['type']; ?>" class="text-blue-500 hover:underline"><?php echo $card['type']; ?></a></p>
                     <p class="text-gray-600 text-center">Rarity: <?php echo $card['rarity']; ?></p>
                     <p class="text-gray-800 text-center font-semibold mt-2">€<?php echo number_format($card['price'], 2); ?></p>
                     <div class="text-center mt-4">
@@ -60,9 +69,5 @@ $card_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </footer>
-</body>
-        </tbody>
-    </table>
-</main>
 </body>
 </html>

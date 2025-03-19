@@ -3,23 +3,16 @@ session_start();
 
 $id = $_GET['id'];
 
-if (!isset($_SESSION['user_id'])) {
-    echo "You are not logged in, please login. ";
-    echo "<a href='login.php'>Login here</a>";
+if (!isset($_SESSION['customer_id']) || $_SESSION['role'] !== 'Administrator') {
+    echo "You do not have permission to access this page.";
     exit;
 }
-
-if ($_SESSION['role'] != 'administrator') {
-    echo "You are not allowed to view this page, please login as admin";
-    exit;
-}
-
 require 'database.php';
 
 $sql = "SELECT * FROM cards WHERE card_id = $id";
-$stmt = $conn->prepare($query);
+$stmt = $conn->prepare($sql);
 $stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$card = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 require 'header.php';
 ?>
@@ -27,11 +20,11 @@ require 'header.php';
 <main>
     <h1>Edit Card</h1>
     <div class="container">
-        <form action="tools_edit_process.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $card['card_id'] ?>">
+        <form action="collection_edit.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $cards['card_id'] ?>">
             <div>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="<?php echo $card['name'] ?>">
+                <input type="text" id="name" name="name" value="<?php echo $cards['name'] ?>">
             </div>
             <div>
                 <label for="type">Type:</label>
@@ -53,4 +46,3 @@ require 'header.php';
         </form>
     </div>
 </main>
-<?php require 'footer.php' ?>

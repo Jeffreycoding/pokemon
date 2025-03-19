@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['customer_id'])) {
-    echo "You are not logged in, please login. ";
-    echo "<a href='login.php'>Login here</a>";
+if (!isset($_SESSION['customer_id']) || $_SESSION['role'] !== 'Administrator') {
+    echo "You do not have permission to access this page.";
     exit;
 }
 

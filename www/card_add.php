@@ -1,8 +1,11 @@
-
-
 <?php
 session_start();
 include 'database.php';
+
+if (!isset($_SESSION['customer_id']) || $_SESSION['role'] !== 'Administrator') {
+    echo "You do not have permission to access this page.";
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
